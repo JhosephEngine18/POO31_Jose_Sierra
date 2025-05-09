@@ -67,6 +67,9 @@ Movies Movie1;
 Movies Movie2;
 Movies Movie3;
 string MoviesList[3] = {Movie1.GetMovieName(), Movie2.GetMovieName(), Movie3.GetMovieName()};
+int Clasification[3] = {Movie1.GetClasification(), Movie2.GetClasification(), Movie3.GetClasification()};
+
+
 
 void GetMovies(string List[])
 {
@@ -79,22 +82,22 @@ void GetMovies(string List[])
 
 void AgeVerification(int Age, string Movie)
 {
-    if (Movie.length() == Movie1.GetMovieName().length() && Age < Movie1.GetClasification())
-    {
-        cout << "You are not old enough to see this movie\n";
-    }
-    if (Movie.length() == Movie2.GetMovieName().length() && Age < Movie2.GetClasification())
-    {
-        cout << "You are not old enough to see this movie\n";
-    }
-    if (Movie.length() == Movie3.GetMovieName().length() && Age < Movie3.GetClasification())
-    {
-        cout << "You are not old enough to see this movie\n";
-    }
+    if (Movie == Movie1.GetMovieName() && Age < Movie1.GetClasification())
+        {
+            cout << "You cant see this movie\n";  
+        }
+    else if (Movie == Movie2.GetMovieName() && Age < Movie2.GetClasification())
+        {
+            cout << "You cant see this movie\n";
+        }
+    else if (Movie == Movie3.GetMovieName() && Age < Movie3.GetClasification())
+        {
+            cout << "You cant see this movie\n";
+        }
     else
-    {
-        cout << "You can see this movie\n";
-    }
+        {
+            cout << "You can see this movie\n";
+        }
     
 }
 
@@ -153,21 +156,20 @@ int main()
         cin >> Movie;
 
         
-        if (Movie.length() == Movie1.GetMovieName().length())
+        if (Movie == Movie1.GetMovieName())
         {
             break;
         }
-        else if (Movie.length() == Movie2.GetMovieName().length())
+        else if (Movie == Movie2.GetMovieName())
         {
             break;
         }
-        else if (Movie.length() == Movie3.GetMovieName().length())
+        else if (Movie == Movie3.GetMovieName())
         {
             break;
         }
-        else if (Movie.length() != Movie1.GetMovieName().length() || Movie.length() != Movie2.GetMovieName().length() || Movie.length() != Movie3.GetMovieName().length())
+        else
         {
-            cout << "Type the movie that you would you like to see\n";
             cin.clear();
             cin >> Movie;
             system("cls");
