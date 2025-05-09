@@ -7,6 +7,7 @@ Description: This program shows you a Movies Catalog and verify if the user can 
 */
 
 #include <iostream>
+#include <limits>
 using namespace std;
 
 class Movies
@@ -76,15 +77,23 @@ void GetMovies(string List[])
     
 }
 
-void AgeVerification(int Age)
+void AgeVerification(int Age, string Movie)
 {
-    if (Age < 15)
+    if (Movie.length() == Movie1.GetMovieName().length() && Age < Movie1.GetClasification())
     {
-        cout << "You are not old enough to see these movies\n";
+        cout << "You are not old enough to see this movie\n";
     }
-    else if (Age >= 15)
+    if (Movie.length() == Movie2.GetMovieName().length() && Age < Movie2.GetClasification())
     {
-        cout << "You can see these movies\n";
+        cout << "You are not old enough to see this movie\n";
+    }
+    if (Movie.length() == Movie3.GetMovieName().length() && Age < Movie3.GetClasification())
+    {
+        cout << "You are not old enough to see this movie\n";
+    }
+    else
+    {
+        cout << "You can see this movie\n";
     }
     
 }
@@ -121,6 +130,7 @@ void GetCatalog()
 int main()
 {
     int Age;
+    string Movie;
     
     Movie1.SetMovieName("Titanic");
     Movie1.SetClasification(18);
@@ -130,12 +140,61 @@ int main()
     Movie2.SetClasification(15);
     Movie2.SetDuration(2);
     Movie2.SetSinopsis("The Royal dog");
-    Movie3.SetMovieName("The Ball");
+    Movie3.SetMovieName("TheBall");
     Movie3.SetClasification(18);
     Movie3.SetDuration(3);
     Movie3.SetSinopsis("The ball that rolls");    
     GetCatalog();
+    cout << "Type the movie that you would you like to see\n";
+        
+    while (true)
+    {
+
+        cin >> Movie;
+
+        
+        if (Movie.length() == Movie1.GetMovieName().length())
+        {
+            break;
+        }
+        else if (Movie.length() == Movie2.GetMovieName().length())
+        {
+            break;
+        }
+        else if (Movie.length() == Movie3.GetMovieName().length())
+        {
+            break;
+        }
+        else if (Movie.length() != Movie1.GetMovieName().length() || Movie.length() != Movie2.GetMovieName().length() || Movie.length() != Movie3.GetMovieName().length())
+        {
+            cout << "Type the movie that you would you like to see\n";
+            cin.clear();
+            cin >> Movie;
+            system("cls");
+            cout << "That movie is not inside of our catalog type again\n";
+        }
+    }
     cout << "Input your Age\n";
-    cin >> Age;
-    AgeVerification(Age);
+    while (true)
+    {
+        cin.ignore();
+        cin >> Age;
+
+        if (cin.fail())
+        {
+            cin.clear();cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            system("cls");
+            cout << "That is not a number\n";
+        }
+        else
+        {
+            break;
+        }
+    }
+    AgeVerification(Age, Movie);
+    
+    
+    
+    
 }
